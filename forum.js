@@ -1,75 +1,100 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Get all like and dislike buttons
-  var likeButtons = document.querySelectorAll(".button--approve");
-  var dislikeButtons = document.querySelectorAll(".button--deny");
-  var commentSymbol = document.querySelectorAll(".button--flag");
-
-  // Check if the user has already interacted with like/dislike buttons
-  var userLiked = localStorage.getItem("userLiked") === "true";
-  var userDisliked = localStorage.getItem("userDisliked") === "true";
-
-  // Log to check if local storage items are retrieved correctly
-  console.log("User Liked:", userLiked);
-  console.log("User Disliked:", userDisliked);
-
-  // Disable like/dislike buttons if user has already interacted
-  if (userLiked || userDisliked) {
-    likeButtons.forEach(function (button) {
-      button.disabled = true;
+  function disableButtons(buttons) {
+    buttons.forEach(function (btn) {
+      btn.disabled = true;
     });
-    dislikeButtons.forEach(function (button) {
-      button.disabled = true;
-    });
+
+    setTimeout(function () {
+      buttons.forEach(function (btn) {
+        btn.disabled = false;
+      });
+    }, 2000); // Adjust the delay as needed
+  }
+
+  // Function to handle like button click
+  function handleLikeClick(button, response) {
+    console.log("Like button clicked");
+
+    var likeCountElement = response.querySelector(".like-count");
+    var dislikeCountElement = response.querySelector(".dislike-count");
+
+    var likeCount = parseInt(likeCountElement.textContent);
+    var dislikeCount = parseInt(dislikeCountElement.textContent);
+
+    if (!button.classList.contains("liked")) {
+      likeCountElement.textContent = likeCount + 1;
+      button.classList.add("liked");
+
+      // If dislike button was previously clicked, decrement dislike count
+      var dislikeButton = response.querySelector(".button--deny");
+      if (dislikeButton.classList.contains("disliked")) {
+        dislikeCountElement.textContent = dislikeCount - 1;
+        dislikeButton.classList.remove("disliked");
+      }
+    } else {
+      // If like button was previously clicked, decrement like count
+      likeCountElement.textContent = likeCount - 1;
+      button.classList.remove("liked");
+    }
+
+    // Disable buttons in the current response
+    var currentLikeButtons = response.querySelectorAll(".button--approve");
+    var currentDislikeButtons = response.querySelectorAll(".button--deny");
+    disableButtons(currentLikeButtons);
+    disableButtons(currentDislikeButtons);
+  }
+
+  // Function to handle dislike button click
+  function handleDislikeClick(button, response) {
+    console.log("Dislike button clicked");
+
+    var likeCountElement = response.querySelector(".like-count");
+    var dislikeCountElement = response.querySelector(".dislike-count");
+
+    var likeCount = parseInt(likeCountElement.textContent);
+    var dislikeCount = parseInt(dislikeCountElement.textContent);
+
+    if (!button.classList.contains("disliked")) {
+      dislikeCountElement.textContent = dislikeCount + 1;
+      button.classList.add("disliked");
+
+      // If like button was previously clicked, decrement like count
+      var likeButton = response.querySelector(".button--approve");
+      if (likeButton.classList.contains("liked")) {
+        likeCountElement.textContent = likeCount - 1;
+        likeButton.classList.remove("liked");
+      }
+    } else {
+      // If dislike button was previously clicked, decrement dislike count
+      dislikeCountElement.textContent = dislikeCount - 1;
+      button.classList.remove("disliked");
+    }
+
+    // Disable buttons in the current response
+    var currentLikeButtons = response.querySelectorAll(".button--approve");
+    var currentDislikeButtons = response.querySelectorAll(".button--deny");
+    disableButtons(currentLikeButtons);
+    disableButtons(currentDislikeButtons);
   }
 
   // Event listener for like buttons
-  likeButtons.forEach(function (button) {
+  document.querySelectorAll(".button--approve").forEach(function (button) {
     button.addEventListener("click", function () {
-      console.log("Like button clicked");
-      if (!userLiked) {
-        var likeCountElement =
-          button.parentElement.querySelector(".like-count");
-        var likeCount = parseInt(likeCountElement.textContent);
-        likeCountElement.textContent = likeCount + 1;
-        userLiked = true;
-        localStorage.setItem("userLiked", "true");
-        // Disable all like buttons
-        likeButtons.forEach(function (btn) {
-          btn.disabled = true;
-        });
-        // Disable all dislike buttons
-        dislikeButtons.forEach(function (btn) {
-          btn.disabled = true;
-        });
-      }
+      var response = button.closest(".response");
+      handleLikeClick(button, response);
     });
   });
 
   // Event listener for dislike buttons
-  dislikeButtons.forEach(function (button) {
+  document.querySelectorAll(".button--deny").forEach(function (button) {
     button.addEventListener("click", function () {
-      console.log("Dislike button clicked");
-      if (!userDisliked) {
-        var dislikeCountElement =
-          button.parentElement.querySelector(".dislike-count");
-        var dislikeCount = parseInt(dislikeCountElement.textContent);
-        dislikeCountElement.textContent = dislikeCount + 1;
-        userDisliked = true;
-        localStorage.setItem("userDisliked", "true");
-        // Disable all dislike buttons
-        dislikeButtons.forEach(function (btn) {
-          btn.disabled = true;
-        });
-        // Disable all like buttons
-        likeButtons.forEach(function (btn) {
-          btn.disabled = true;
-        });
-      }
+      var response = button.closest(".response");
+      handleDislikeClick(button, response);
     });
   });
 
-  // Add event listener to comment symbol
-  commentSymbol.forEach(function (symbol) {
+  // Add event listener to comment symbols
+  document.querySelectorAll(".button--flag").forEach(function (symbol) {
     symbol.addEventListener("click", function () {
       console.log("Comment button clicked");
       var commentForm = symbol
