@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AcadMate Login</title>
-  </head>
-  <body>
-    <h1>AcadMate</h1>
-    <ul>
-      <li type="none"><h1>Welcome!</h1></li>
-    </ul>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadMate - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+  <h1>AcadMate!</h1>
+  <div class="container">
+    <h2>Login</h2>
+    <form>
+      <label for="email">Student Email</label>
+      <input type="email" id="email" placeholder="Enter your email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+    <div class="additional-links">
+      <a href="./register.html">New User ?</a>
+      <a href="#">Forgot Password</a>
+    </div>
+  </div>
+</body>
 </html>
