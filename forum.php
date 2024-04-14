@@ -190,7 +190,47 @@ if (isset($_POST["comment_body"]) && isset($_POST["post_id"])) {
     ?>
 
 </div>
+</div>
+<footer class="bg-light py-5">
 
+        <div class="row">
+          <div class="col-md-4">
+            <h5>About Us</h5>
+            <p>
+              Acadmate is a dedicated platform for college students seeking
+              study materials and engaging in academic discussions.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Forum</a></li>
+              <li><a href="#">Notes</a></li>
+              <li><a href="#">Search</a></li>
+              <li><a href="#">Profile</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 123 Main Street, City,
+                State
+              </li>
+              <li><i class="fas fa-envelope"></i> info@acadmate.com</li>
+              <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>&copy; 2023 Acadmate. All rights reserved.</p>
+          </div>
+        </div>
+      
+    </footer>
 <script src="./forum.js"></script>
 </body>
 </html>
