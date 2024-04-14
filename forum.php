@@ -109,7 +109,7 @@ if (isset($_POST["comment_body"]) && isset($_POST["post_id"])) {
         <div class="post-group">
             <div class="post">
                 <h3 class="post__author"><?php echo $row_post['author']; ?></h3>
-                <h4 class="post__timestamp"><?php echo $row_post['created_at']; ?></h4>
+                <p class="post__timestamp"><?php echo $row_post['created_at']; ?></p>
                 <p class="post__body"><?php echo $row_post['body']; ?></p>
                 <div class="post__actions">
                     <?php
@@ -204,10 +204,10 @@ if (isset($_POST["comment_body"]) && isset($_POST["post_id"])) {
           <div class="col-md-4">
             <h5>Quick Links</h5>
             <ul class="list-unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Forum</a></li>
-              <li><a href="#">Notes</a></li>
-              <li><a href="#">Search</a></li>
+              <li><a href="./index.html">Home</a></li>
+              
+              <li><a href="./notes.php">Notes</a></li>
+              
               <li><a href="#">Profile</a></li>
             </ul>
           </div>

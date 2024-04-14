@@ -32,16 +32,20 @@
         <li class="nav-item">
          <a class="nav-link" href="#">Search</a>
         </li>
-        <li class="nav-item">
-         <a class="nav-link" href="#">Profile</a>
-        </li>
+        
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
          <a class="nav-link btn btn-primary mr-2" href="./login.html">Login</a>
         </li>
         <li class="nav-item">
          <a class="nav-link btn btn-primary mr-2" href="./register.php">Register</a>
+        </li> -->
+        <li class="nav-item">
+         <a class="nav-link" href="#">Profile</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link" href="./aboutus.html">About Us</a>
         </li>
       </ul>
     </div>
